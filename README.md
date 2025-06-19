@@ -21,11 +21,13 @@ Una calculadora científica desarrollada con Flutter que permite realizar operac
 
 ## Capturas de pantalla
 
-[Imagen de la interfaz principal]
+![image](https://github.com/user-attachments/assets/c01b30a9-d725-44c1-85f4-b4521217d59c)
 
-[Imagen realizando una operación]
+![image](https://github.com/user-attachments/assets/d22cbcf7-0737-43dd-81c6-3d9bcb8a4b41)
 
-[Imagen mostrando el resultado]
+
+![image](https://github.com/user-attachments/assets/87531511-c7f9-48a2-b4c0-5cfca419c201)
+
 
 ## Instalación
 
