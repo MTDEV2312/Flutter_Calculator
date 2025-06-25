@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("kotlin-android")
@@ -6,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.calculadora_cientifica"
+    namespace = "com.example.hello_world"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -21,7 +23,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.calculadora_cientifica"
+        applicationId = "com.example.hello_world"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -29,12 +31,29 @@ android {
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
+    val kestorePropertiesFile = rootProject.file("../key.properties")
+
+    val kestoreProperties = Properties()
+
+    if (kestorePropertiesFile.exists()) {
+        kestoreProperties.load(kestorePropertiesFile.inputStream())
+    }
+
+    signingConfigs{
+        create("release"){
+            storeFile = file(kestoreProperties["storeFile"] as String)
+            storePassword = kestoreProperties["storePassword"] as String
+            keyAlias = kestoreProperties["keyAlias"] as String
+            keyPassword = kestoreProperties["keyPassword"] as String
+
+        }
+    }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("release")
+            isMinifyEnabled = false
+            isShrinkResources = false
         }
     }
 }
